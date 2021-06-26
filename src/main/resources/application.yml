@@ -1,0 +1,81 @@
+server:
+  port: 8080
+  # da bi se videle metrike tomcat-a
+  tomcat:
+    mbeanregistry:
+      enabled: true
+spring:
+  application:
+    name: gateway
+  profiles:
+    active: @profileActive@
+
+# metrike za prometheus
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+  metrics:
+    tags:
+      application: ${spring.application.name}
+    enable:
+      all: true
+---
+
+spring:
+  profiles: dev
+  datasource:
+    username:  ${DATABASE_USERNAME:root}
+    password: ${DATABASE_PASSWORD:password}
+    url: jdbc:postgresql://${DATABASE_DOMAIN:database}:${DATABASE_PORT:5432}/${DATABASE_SCHEMA:gateway}
+    platform: postgres
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      metrics:
+        enabled: true
+
+# nzm da li ovo treba ovde uopste
+server:
+  tomcat:
+    mbeanregistry:
+      enabled: true
+    accesslog:
+      enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+  metrics:
+    tags:
+      application: ${spring.application.name}
+    enable:
+      all: true
+
+---
+spring:
+  profiles: prod
+  datasource:
+    username: ${DATABASE_USERNAME:root}
+    password: ${DATABASE_PASSWORD:password}
+    url: jdbc:postgresql://${DATABASE_DOMAIN:database}:${DATABASE_PORT:5432}/${DATABASE_SCHEMA:gateway}
+    platform: postgres
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
