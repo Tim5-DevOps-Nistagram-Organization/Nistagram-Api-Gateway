@@ -20,15 +20,27 @@ public class GatewayRouteConfigurationDev {
                                 .filters(f->f.rewritePath("/order/(?<path>.*)", "/$\\{path}"))
                                 .uri("lb://nistagram-auth")
                 )
-                .route("product",
-                r-> r.path("/product/**")
-                        .filters(f->f.rewritePath("/product/(?<path>.*)", "/$\\{path}"))
-                        .uri("lb://product")
+                .route("campaign",
+                r-> r.path("/campaign/**")
+                        .filters(f->f.rewritePath("/campaign/(?<path>.*)", "/$\\{path}"))
+                        .uri("lb://nistagram-campaign")
                 )
-                .route("report",
-                        r-> r.path("/report/**")
-                                .filters(f->f.rewritePath("/report/(?<path>.*)", "/$\\{path}"))
-                                .uri("lb://report")
+                .route("media",
+                        r-> r.path("/media/**")
+                                .filters(f->f.rewritePath("/media/(?<path>.*)", "/$\\{path}"))
+                                .uri("lb://nistagram-media")
+                ).route("post",
+                        r-> r.path("/post/**")
+                                .filters(f->f.rewritePath("/post/(?<path>.*)", "/$\\{path}"))
+                                .uri("lb://nistagram-post")
+                ).route("search",
+                        r-> r.path("/search/**")
+                                .filters(f->f.rewritePath("/search/(?<path>.*)", "/$\\{path}"))
+                                .uri("lb://nistagram-search")
+                ).route("user",
+                        r-> r.path("/user/**")
+                                .filters(f->f.rewritePath("/user/(?<path>.*)", "/$\\{path}"))
+                                .uri("lb://nistagram-user")
                 )
                 .route("front",
                         r-> r.path("/")
