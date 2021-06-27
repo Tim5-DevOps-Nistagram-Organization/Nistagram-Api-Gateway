@@ -15,9 +15,9 @@ public class GatewayRouteConfigurationDev {
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
         return builder.routes()
 
-                .route("order",
+                .route("auth",
                         r-> r.path("/auth/**")
-                                .filters(f->f.rewritePath("/order/(?<path>.*)", "/$\\{path}"))
+                                .filters(f->f.rewritePath("/auth/(?<path>.*)", "/$\\{path}"))
                                 .uri("lb://nistagram-auth")
                 )
                 .route("campaign",
