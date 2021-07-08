@@ -14,8 +14,7 @@ echo $APP_IMAGE_NAME
 DOCKER_BUILDKIT=1 docker build \
 -t "${APP_IMAGE_NAME}" \
 --target gatewayRuntimeDev \ 
---no-cache \
-.
+--no-cache .
 
 
 docker images
