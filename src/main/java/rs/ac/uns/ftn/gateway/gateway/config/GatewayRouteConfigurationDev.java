@@ -45,7 +45,7 @@ public class GatewayRouteConfigurationDev {
                 .route("front",
                         r-> r.path("/")
                                 .filters(f->f.rewritePath("/", "/index.html"))
-                                .uri("http://localhost:8088")
+                                .uri("http://localhost:8080")
                 )
                 .build();
     }

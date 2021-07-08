@@ -61,7 +61,32 @@ management:
       application: ${spring.application.name}
     enable:
       all: true
+---
 
+spring:
+  profiles: devl
+  datasource:
+    username:  sa
+    password: zgadija
+    url: jdbc:postgresql://${DATABASE_DOMAIN:localhost}:${DATABASE_PORT:5432}/${DATABASE_SCHEMA:gateway}
+    platform: postgres
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      metrics:
+        enabled: true
+server:
+  port: 10100
+
+logging:
+  level:
+    root: DEBUG
 ---
 spring:
   profiles: prod

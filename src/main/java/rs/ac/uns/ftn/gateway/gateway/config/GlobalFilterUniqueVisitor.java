@@ -49,7 +49,6 @@ public class GlobalFilterUniqueVisitor implements GlobalFilter {
             this.perCustomerMessages.increment();
         }
 
-
         return chain.filter(exchange);
     }
 }
