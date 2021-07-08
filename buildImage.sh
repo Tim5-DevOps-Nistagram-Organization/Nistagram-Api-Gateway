@@ -8,14 +8,8 @@ APP_NAME=nistagramapigateway
 
 APP_IMAGE_NAME=${DOCKERHUB_USERNAME}/${APP_NAME}:${VERSION}
 
-echo $APP_IMAGE_NAME
 
-
-DOCKER_BUILDKIT=1 docker build \
--t "${APP_IMAGE_NAME}" \
---target gatewayRuntimeDev \ 
---no-cache \
-.
+DOCKER_BUILDKIT=1 docker build -t "${APP_IMAGE_NAME}"  --target gatewayRuntimeDev --no-cache .
 
 
 docker login --username ${DOCKERHUB_USERNAME} --password=${DOCKERHUB_PASSWORD}
