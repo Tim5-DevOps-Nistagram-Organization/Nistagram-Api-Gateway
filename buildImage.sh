@@ -18,5 +18,8 @@ DOCKER_BUILDKIT=1 docker build \
 .
 
 
+docker images
+
+
 docker login --username ${DOCKERHUB_USERNAME} --password=${DOCKERHUB_PASSWORD}
 docker push "$APP_IMAGE_NAME"
